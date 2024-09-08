@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Main-Class: org.springframework.boot.loader.launch.JarLauncher
-Start-Class: com.lab1.lab1.Lab1Application
+Start-Class: com.lab2.Lab1Application
 Spring-Boot-Version: 3.3.3
 Spring-Boot-Classes: BOOT-INF/classes/
 Spring-Boot-Lib: BOOT-INF/lib/
