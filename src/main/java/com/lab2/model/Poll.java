@@ -9,14 +9,16 @@ public class Poll {
     private String question;
     private Instant publishedAt;
     private Instant validUntil;
+    private User creator;
     private Set<VoteOption> options = new HashSet<>();
     private Set<Vote> votes = new HashSet<>();
     private Set<User> invitedUsers = new HashSet<>();
 
     public Poll() {}
 
-    public Poll(Integer id, String question, Instant publishedAt, Instant validUntil) {
+    public Poll(Integer id, User creator, String question, Instant publishedAt, Instant validUntil) {
         this.id = id;
+        this.creator = creator;
         this.question = question;
         this.publishedAt = publishedAt;
         this.validUntil = validUntil;
@@ -42,4 +44,12 @@ public class Poll {
 
     public Set<User> getInvitedUsers() { return invitedUsers; }
     public void setInvitedUsers(Set<User> invitedUsers) { this.invitedUsers = invitedUsers; }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
 }

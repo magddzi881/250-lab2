@@ -44,6 +44,16 @@ public class PollManager {
     public Poll createPoll(Poll poll) {
         poll.setId(pollIdCounter++);
         polls.put(poll.getId(), poll);
+        User user = poll.getCreator();
+        Set<Integer> pools = user.getCreatedPolls();
+        User person =  getUserById(user.getId());
+        user.setEmail(person.getEmail());
+        user.setVotes(person.getVotes());
+        user.setUsername(person.getUsername());
+        user.setId(person.getId());
+        poll.setCreator(user);
+        pools.add(poll.getId());
+        user.setCreatedPolls(pools);
         return poll;
     }
 
