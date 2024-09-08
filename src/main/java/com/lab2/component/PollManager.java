@@ -93,7 +93,7 @@ public class PollManager {
         vote.setVoteOption(option);
         vote.setUser(user);
         vote.setId(voteIdCounter++);
-
+        user.getVotes().add(vote.getId());
         votes.put(vote.getId(), vote);
         return vote;
     }
@@ -110,16 +110,4 @@ public class PollManager {
         return vote;
     }
 
-    public void addVoteToUser(Vote vote) {
-        User user = vote.getUser();
-        if (user == null) {
-            throw new IllegalArgumentException("User must be associated with the vote.");
-        }
-        Set<Vote> userVotes = user.getVotes();
-        if (userVotes == null) {
-            userVotes = new HashSet<>();
-        }
-        userVotes.add(vote);
-        user.setVotes(userVotes);
-    }
 }

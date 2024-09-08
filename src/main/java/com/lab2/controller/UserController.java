@@ -29,4 +29,5 @@ public class UserController {
     public User getUserById(@PathVariable Integer id) {
         return pollManager.getUserById(id);
     }
+
 }

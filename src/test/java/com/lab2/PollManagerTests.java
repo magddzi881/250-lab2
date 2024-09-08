@@ -83,18 +83,7 @@ public class PollManagerTests {
 		assertEquals(1, createdVote.getId());
 		assertEquals(user, createdVote.getUser());
 		assertEquals(voteOption, createdVote.getVoteOption());
-		assertTrue(user.getVotes().contains(createdVote));
-	}
-
-	@Test
-	public void testAddVoteToUser() {
-		Vote vote = new Vote();
-		vote.setId(1);
-		vote.setUser(user);
-		vote.setVoteOption(voteOption);
-
-		pollManager.addVoteToUser(vote);
-		assertTrue(user.getVotes().contains(vote));
+		assertTrue(user.getVotes().contains(createdVote.getId()));
 	}
 
 	@Test
