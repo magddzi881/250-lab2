@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/voteOptions")
 public class VoteOptionController {
@@ -28,5 +29,10 @@ public class VoteOptionController {
     @GetMapping("/{id}")
     public VoteOption getVoteOptionById(@PathVariable Integer id) {
         return pollManager.getVoteOptionById(id);
+    }
+
+    @GetMapping("/poll/{pollId}")
+    public Collection<VoteOption> getVoteOptionsByPollId(@PathVariable Integer pollId) {
+        return pollManager.getVoteOptionsByPollId(pollId);
     }
 }

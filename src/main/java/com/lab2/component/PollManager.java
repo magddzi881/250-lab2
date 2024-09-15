@@ -8,6 +8,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class PollManager {
@@ -120,4 +121,9 @@ public class PollManager {
         return vote;
     }
 
+    public Collection<VoteOption> getVoteOptionsByPollId(Integer pollId) {
+        return voteOptions.values().stream()
+                .filter(voteOption -> voteOption.getPollId().equals(pollId))
+                .collect(Collectors.toList());
+    }
 }
