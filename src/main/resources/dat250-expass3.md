@@ -11,7 +11,8 @@ During the installation and use of MongoDB, I did not encounter any significant 
 
 
 2. **Experiment 1 Results (CRUD Operations)**:
-  <img width="707" alt="ss2<img width="707" alt="ss3-dat250" src="https://github.com/user-attachments/assets/e5c8d3a6-8f49-4ec3-bf44-5cb2534470e4">
+   
+  <img width="707" alt="ss3-dat250" src="https://github.com/user-attachments/assets/e5c8d3a6-8f49-4ec3-bf44-5cb2534470e4">
   <img width="707" alt="ss3-dat250" src="https://github.com/user-attachments/assets/17cb6dba-bd53-409c-ba36-daf85b04a8b1">
   <img width="707" alt="ss4-dat250" src="https://github.com/user-attachments/assets/4e62e576-21c4-42ff-8828-911ec5ff88f6">
   <img width="707" alt="ss5-dat250" src="https://github.com/user-attachments/assets/57c0e239-e060-4ab9-a96d-c4f480dffc32">
