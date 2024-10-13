@@ -12,5 +12,50 @@ Link to the repository: [GitHub Repository](https://github.com/magddzi881/dat250
   
 
 
-ex. 2
+## Example 2
+
+In this example i added Dockerfile to my project with code:
+
+```dockerfile
+# Stage 1: Build the application
+FROM gradle:7.6-jdk17 AS build
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Gradle wrapper and build files
+COPY gradlew .
+COPY gradle/ gradle/
+COPY build.gradle.kts .
+COPY settings.gradle.kts .
+
+# Copy the source code into the container
+COPY src/ src/
+
+# Build the application
+RUN ./gradlew bootJar
+
+# Stage 2: Run the application
+FROM eclipse-temurin:21-jdk
+
+# Set the working directory for the final image
+WORKDIR /app
+
+# Copy the built JAR file from the build stage
+COPY --from=build /app/build/libs/*.jar app.jar
+
+# Create a non-root user to run the application
+RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
+
+# Change the owner of the JAR file to the non-root user
+RUN chown appuser:appgroup app.jar
+
+# Switch to the non-root user
+USER appuser
+
+# Expose the application's port
+EXPOSE 8080
+
+# Command to run the application
+CMD ["java", "-jar", "app.jar"]
 
