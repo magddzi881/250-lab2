@@ -23,6 +23,7 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
 	implementation("mysql:mysql-connector-java:8.0.30")
+	implementation("org.postgresql:postgresql:42.7.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
