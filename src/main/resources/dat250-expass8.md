@@ -14,48 +14,38 @@ Link to the repository: [GitHub Repository](https://github.com/magddzi881/dat250
 
 ## Example 2
 
+Link to the repository: [GitHub Repository](https://github.com/magddzi881/250-lab2)
+
 In this example i added Dockerfile to my project with code:
 
 ```dockerfile
-# Stage 1: Build the application
-FROM gradle:7.6-jdk17 AS build
+# Use an image with JDK 21
+FROM eclipse-temurin:21-jdk AS build
 
-# Set the working directory in the container
+# Step 2: Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Gradle wrapper and build files
-COPY gradlew .
-COPY gradle/ gradle/
-COPY build.gradle.kts .
-COPY settings.gradle.kts .
+# Step 3: Copy necessary files to the container (gradle scripts and project files)
+COPY build.gradle.kts settings.gradle.kts gradlew /app/
+COPY gradle /app/gradle
+COPY src /app/src
 
-# Copy the source code into the container
-COPY src/ src/
-
-# Build the application
+# Step 4: Run the Gradle build task to create the bootable JAR file
 RUN ./gradlew bootJar
 
-# Stage 2: Run the application
-FROM eclipse-temurin:21-jdk
+# Step 5: Use a minimal JDK 21 image to run the app
+FROM eclipse-temurin:21-jdk-alpine AS run
 
-# Set the working directory for the final image
+# Step 6: Set the working directory
 WORKDIR /app
 
-# Copy the built JAR file from the build stage
+# Step 7: Copy the built jar file from the build stage into the run stage
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Create a non-root user to run the application
-RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
-
-# Change the owner of the JAR file to the non-root user
-RUN chown appuser:appgroup app.jar
-
-# Switch to the non-root user
-USER appuser
-
-# Expose the application's port
+# Step 8: Expose port 8080 (default port for Spring Boot)
 EXPOSE 8080
 
-# Command to run the application
+# Step 9: Define the command to run the application
 CMD ["java", "-jar", "app.jar"]
+
 
